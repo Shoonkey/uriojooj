@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0 -611)">
+    <g transform="matrix(1.9 0 0 1.9 -169 -835)">
+      <rect transform="rotate(45 -737 305)" x="211" y="4.3" width="89" height="89" ry="29" style="fill:none;paint-order:normal;stroke-linecap:round;stroke-linejoin:round;stroke-width:12;stroke:#d7d7d7"/>
+      <g transform="translate(34 566)">
+        <path transform="translate(0 -611)" d="m201 836c11 54 11 164 1e-5 208-3.3 14-31 12-43 0l-83-83c-12-12-12-31 0-43l83-83c12-12 40-14 43 0z" style="fill:#e2e2e2;paint-order:normal"/>
+        <path transform="translate(0 -611)" d="m186 836c-11 54-11 164-1e-5 208 3.3 14 31 12 43 0l83-83c12-12 12-31 0-43l-83-83c-12-12-40-14-43 0z" style="fill:#d8d8d8;paint-order:normal"/>
+      </g>
+      <path d="m266 846 54 23c29 12 15 39-7.7 61l-56 53c-23 22-36 23-60 1.5l-63-59c-23-22-23-32 0-54l52-51c23-22 51 13 80 26z" style="fill:#412100;paint-order:normal"/>
+    </g>
+  </g>
+</svg>
