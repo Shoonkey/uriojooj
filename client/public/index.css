@@ -4,3 +4,13 @@ html, body, h1, h2, h4, h5, h6, p {
 }
 
 html, body { width: 100%; }
+
+:root {
+  --primary: #FF5757;
+
+  --golden: #EFAE13;
+  --dark-grey: #1B1B1B;
+  --light-grey: #e2e2e2;
+}
+
+.page { min-height: 100vh; }
