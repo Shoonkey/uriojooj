@@ -1,23 +1,16 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+
+import Auth from './pages/Auth';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
-          <div 
-            style={{ 
-              display: "flex", justifyContent: "center", alignItems: "center", 
-              minHeight: "100vh",
-              backgroundColor: "#e2e2e2"
-            }}
-          >
-            <h1>Nothing out here yet.</h1>
-          </div>
-        </Route>
+        <Route exact path='/'><Redirect to="/auth" /></Route>
+        <Route path='/auth' component={Auth} />
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
