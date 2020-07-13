@@ -22,11 +22,13 @@ export const Container = styled.div`
   }
 
   input {
+    box-sizing: border-box;
     background: #121212;
     font-family: Saira;
     color: var(--light-grey);
     border: solid 1px var(--light-grey);
     margin-top: ${marginTop};
     padding: 4px;
+    width: 100%;
   }
 `;

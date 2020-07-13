@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Container as Input } from '../../components/Input/styles';
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -48,7 +50,7 @@ export const Container = styled.div`
       padding-left: 4em;
 
       button { margin-top: 1em; }
-      input, .btn-group, .extra { width: max(200px, 50%); }
+      ${Input}, .btn-group, .extra { width: max(200px, 50%); }
 
       .btn-group {
         display: flex;
