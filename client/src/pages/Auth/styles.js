@@ -61,6 +61,11 @@ export const Container = styled.div`
         }
       }
 
+      ion-icon { 
+        vertical-align: middle; 
+        font-size: 1.4em;
+      }
+
       .extra { text-align: center; }
 
     }
