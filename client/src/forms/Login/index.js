@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Icon from '../../components/Icon';
 import { defineAuthType } from '../../util/auth';
 import { login } from '../../services/api';
 
@@ -33,13 +34,13 @@ function LoginForm(){
             onClick={() => console.log("Not implemented yet")}
             title="Log in with Google" 
           >
-            G
+            <Icon name="logo-google" />
           </Button>
           <Button 
             onClick={() => console.log("Not implemented yet")}
             title="Log in with Facebook" 
           >
-            F
+            <Icon name="logo-facebook" />
           </Button>
         </div>
       </div>
