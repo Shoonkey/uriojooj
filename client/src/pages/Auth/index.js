@@ -19,13 +19,7 @@ function Auth() {
       form = <SignupForm />;
       break;
     default:
-      form = (
-        <div className="no-type-defined">
-          <Button onClick={() => defineAuthType("login")}>Log in</Button>
-          or
-          <Button onClick={() => defineAuthType("signup")}>Sign up</Button>
-        </div>
-      );
+      defineAuthType("login");
   }
 
   return (
