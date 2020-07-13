@@ -28,7 +28,7 @@ function LoginForm(){
       />
       <Input type="password" label="Password" value={password} onUpdate={setPassword} />
       <div className="btn-group">
-        <Button type="submit" theme="primary">Entrar</Button>
+        <Button type="submit" theme="primary">Log in</Button>
         <div className="social">
           <Button 
             onClick={() => console.log("Not implemented yet")}
