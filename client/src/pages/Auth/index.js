@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Button from '../../components/Button';
 import LoginForm from '../../forms/Login';
 import SignupForm from '../../forms/Signup';
 import { defineAuthType } from '../../util/auth';
