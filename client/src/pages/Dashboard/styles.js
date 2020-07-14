@@ -14,11 +14,6 @@ export const Container = styled.div`
 
   background: var(--dark-grey);
 
-  nav { 
-    background: #222222; 
-    height: 10vh; 
-  }
-
   .content { 
     background: #222222; 
     flex-grow: 1;

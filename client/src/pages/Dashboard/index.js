@@ -1,12 +1,13 @@
 import React from 'react';
 
+import Navbar from '../../components/Navbar';
 import CircularProgress from '../../components/CircularProgress';
 import { Container } from './styles';
 
 function Dashboard() {
   return (
     <Container>
-      <nav></nav>
+      <Navbar />
       <main className="content">
         <h1 className="title">Dashboard</h1>
         <div className="dashboard-data">
