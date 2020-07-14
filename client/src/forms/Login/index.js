@@ -11,12 +11,23 @@ function LoginForm(){
   const [nicknameOrEmail, setNicknameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const submitFn = e => {
     e.preventDefault();
+
+    // Only activate btn loading animation if API call takes more than 300ms
+    const timeout = setTimeout(() => setLoading(true), 300);
+
     login({ nicknameOrEmail, password })
       .then(res => res.data)
       .then(console.log)
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        clearTimeout(timeout);
+        if (loading)
+          setLoading(false);
+      });
   }
 
   return (
@@ -28,7 +39,7 @@ function LoginForm(){
       />
       <Input type="password" label="Password" value={password} onUpdate={setPassword} />
       <div className="btn-group">
-        <Button type="submit" theme="primary">Log in</Button>
+        <Button type="submit" loading={loading}>Log in</Button>
         <div className="social">
           <Button 
             onClick={() => console.log("Not implemented yet")}
