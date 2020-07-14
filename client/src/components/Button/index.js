@@ -1,10 +1,14 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { ButtonContainer, LinkContainer } from './styles';
 
-function Button({ type, onClick, theme, children, ...props }) {
+function Button({ type, to, onClick, theme, children, ...props }) {
+
+  const Container = to ? LinkContainer : ButtonContainer;
+  const appliableProps = Object.assign(props, to ? { to } : { type, onClick });
+
   return (
-    <Container type={type} onClick={onClick} theme={theme} {...props}>
+    <Container theme={theme} {...appliableProps}>
       {children}
     </Container>
   );
