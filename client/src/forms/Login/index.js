@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Icon from '../../components/Icon';
+import { UserContext } from '../../components/UserProvider';
 import { defineAuthType } from '../../util/auth';
 import { login } from '../../services/api';
 
 function LoginForm(){
+
+  const history = useHistory();
+  const { setUser } = useContext(UserContext);
 
   const [nicknameOrEmail, setNicknameOrEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,10 +26,16 @@ function LoginForm(){
 
     login({ nicknameOrEmail, password })
       .then(res => res.data)
-      .then(console.log)
+      .then(data => {
+        setUser(data);
+        setTimeout(() => history.push("/dashboard"), 400);
+      })
       .catch(console.error)
       .finally(() => {
+
+        // Clears the btn loading animation timeout
         clearTimeout(timeout);
+
         if (loading)
           setLoading(false);
       });

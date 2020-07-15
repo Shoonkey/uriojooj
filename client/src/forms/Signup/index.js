@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Icon from '../../components/Icon';
+import { UserContext } from '../../components/UserProvider';
 import { defineAuthType } from '../../util/auth';
 import { signup } from '../../services/api';
 
 function SignupForm(){
+
+  const history = useHistory();
+  const { setUser } = useContext(UserContext);
 
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
@@ -23,10 +28,16 @@ function SignupForm(){
 
     signup({ name, nickname, email, password })
       .then(res => res.data)
-      .then(console.log)
+      .then(data => {
+        setUser(data);
+        setTimeout(() => history.push("/dashboard"), 400);
+      })
       .catch(console.error)
       .finally(() => {
+
+        // Clears the btn loading animation timeout
         clearTimeout(timeout);
+
         if (loading)
           setLoading(false);
       });
