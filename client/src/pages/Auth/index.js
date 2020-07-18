@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import LoginForm from '../../forms/Login';
 import SignupForm from '../../forms/Signup';
 import { defineAuthType } from '../../util/auth';
 import { Container } from './styles';
+import { UserContext } from '../../components/UserProvider';
 
 function Auth() {
 
   const type = new URLSearchParams(window.location.search).get("type");
+  const { user } = useContext(UserContext);
+
+  if (user)
+    return <Redirect to="/dashboard" />;
 
   let form;
   switch(type){
