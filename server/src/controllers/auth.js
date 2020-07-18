@@ -12,7 +12,7 @@ export async function login({ nicknameOrEmail, password }){
 
   let user = await User.findOne({ 
     where,
-    attributes: ["nickname", "name", "password"]
+    attributes: ["id", "nickname", "name", "password"]
   });
 
   if (!user)
@@ -25,8 +25,8 @@ export async function login({ nicknameOrEmail, password }){
   delete user.password;
 
   return { 
-    token: jwt.sign({ user }, process.env.JWT_SECRET),
-    user
+    ...user,
+    token: jwt.sign({ user }, process.env.JWT_SECRET)
   };
 
 }
@@ -63,8 +63,12 @@ export async function signup({ name, nickname, email, password }){
     );
 
     return { 
-      token: jwt.sign({ user }, process.env.JWT_SECRET),
-      user: { name: user.name, nickname: user.nickname }
+      user: { 
+        id: user.id, 
+        name: user.name, 
+        nickname: user.nickname,
+        token: jwt.sign({ user }, process.env.JWT_SECRET)
+      }
     };
 
   } catch (e){
