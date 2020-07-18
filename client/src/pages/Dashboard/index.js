@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import { formatDistanceToNowStrict } from 'date-fns';
 
 import Navbar from '../../components/Navbar';
 import CircularProgress from '../../components/CircularProgress';
+import Spinner from '../../components/Spinner';
+import { UserContext } from '../../components/UserProvider';
+import { getDashboardData } from '../../services/api';
 import { Container } from './styles';
 
 function Dashboard() {
+  
+  const { user } = useContext(UserContext);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (!user) return;
+
+    getDashboardData(user.id)
+      .then(res => res.data)
+      .then(setData)
+      .catch(console.error);
+
+  }, []);
+
+  if (!user)
+    return <Redirect to="/auth" />;
+
   return (
     <Container>
       <Navbar />
@@ -12,21 +34,27 @@ function Dashboard() {
         <h1 className="title">Dashboard</h1>
         <div className="dashboard-data">
           <div className="circular-progress-container general-info">
-            <CircularProgress progress={65.23} />
-            <p className="label">Progress</p>
+          { data ? <CircularProgress progress={data.progress} /> : <Spinner /> }
+          <p className="label">Progress</p>
           </div>
           <div className="info-container">
             <div className="general-info">
               <p className="label">Points</p>
-              <p className="info">{1490.39}</p>
+              { data ? <p className="info">{data.points}</p> : <Spinner /> }
             </div>
             <div className="general-info">
               <p className="label">Solved</p>
-              <p className="info">{377}</p>
+              { data ? <p className="info">{data.solved}</p> : <Spinner /> }
             </div>
             <div className="general-info">
-              <p className="label">Day</p>
-              <p className="info">{1862}</p>
+              <p className="label">Been around for</p>
+              { 
+                data ? (
+                  <p className="info">
+                    {formatDistanceToNowStrict(new Date(data.creationDate))}
+                  </p>
+                ) : <Spinner /> 
+              }
             </div>
           </div>
         </div>

@@ -9,3 +9,7 @@ export async function signup({ name, nickname, email, password }){
 export async function login({ nicknameOrEmail, password }){
   return api.post("/auth/login", { nicknameOrEmail, password });
 }
+
+export async function getDashboardData(uid){
+  return api.get("/dashboard", { params: { uid } });
+}
