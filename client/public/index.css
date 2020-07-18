@@ -12,5 +12,3 @@ html, body { width: 100%; }
   --dark-grey: #1B1B1B;
   --light-grey: #e2e2e2;
 }
-
-.page { min-height: 100vh; }

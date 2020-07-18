@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 
 import LoginForm from '../../forms/Login';
 import SignupForm from '../../forms/Signup';
+import { UserContext } from '../../components/UserProvider';
 import { defineAuthType } from '../../util/auth';
 import { Container } from './styles';
-import { UserContext } from '../../components/UserProvider';
 
 function Auth() {
 
@@ -28,7 +28,7 @@ function Auth() {
   }
 
   return (
-    <Container className="page">
+    <Container>
       <div className="logo">
         <span className="highlighted">URI</span>
         <span>online</span>

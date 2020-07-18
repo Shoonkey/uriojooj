@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
 import { formatDistanceToNowStrict } from 'date-fns';
 
 import Navbar from '../../components/Navbar';
@@ -24,11 +23,8 @@ function Dashboard() {
 
   }, []);
 
-  if (!user)
-    return <Redirect to="/auth" />;
-
   return (
-    <Container>
+    <Container authOnly>
       <Navbar />
       <main className="content">
         <h1 className="title">Dashboard</h1>

@@ -1,19 +1,12 @@
 import styled from 'styled-components';
 
+import Page from '../../components/Page';
 import { Container as CircularProgress } from '../../components/CircularProgress/styles';
 
-export const Container = styled.div`
-  display: flex;
+export const Container = styled(Page)`
   flex-direction: column;
 
   font-family: Saira;
-
-  color: var(--light-grey);
-
-  min-height: 100vh;
-
-  background: var(--dark-grey);
-
   .content { 
     background: #222222; 
     flex-grow: 1;

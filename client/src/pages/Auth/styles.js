@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
+import Page from '../../components/Page';
 import { Container as Input } from '../../components/Input/styles';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+export const Container = styled(Page)`
   justify-content: center;
   align-items: center;
-
-  background: var(--dark-grey);
-  color: var(--light-grey);
 
   .logo {
     font-family: Saira;
