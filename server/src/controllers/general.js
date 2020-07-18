@@ -8,13 +8,22 @@ export async function getDashboardData({ uid }){
     if (!user)
       throw new Error(`Invalid user ID: ${uid}`);
 
-    const result = (await sequelize.query(`
+    let query, solved, progress;
+
+    query = (await sequelize.query(`
       SELECT COUNT(*)::float as solved FROM submissions WHERE 
         submission_status_id = (SELECT id FROM submission_statuses WHERE name='Correct' LIMIT 1)
     `))[0][0];
 
+    solved = query.solved;
+
+    query = (await sequelize.query("SELECT COUNT(*) AS problem_count FROM problems"))[0][0];
+
+    progress = solved / query.problem_count * 100;
+
     return {
-      solved: result.solved, 
+      solved, 
+      progress,
       points: user.points,
       creationDate: user.createdAt
     }
