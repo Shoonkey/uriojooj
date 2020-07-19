@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
+const navHeight = "10vh";
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  position: relative;
+
   padding: 0 1em;
 
   background: #222222; 
-  height: 10vh;
+  height: ${navHeight};
 
   a { text-decoration: none; }
 
@@ -38,9 +42,27 @@ export const Container = styled.div`
       border-radius: 50%;
     }
 
-    &:hover ion-icon { 
-      cursor: pointer; 
-      color: grey; 
+    .dropdown {
+      display: flex;
+      flex-direction: column;
+
+      position: absolute;
+      top: ${navHeight};
+      right: 0;
+
+      background-color: black;
+      margin-top: -.5em;
+      margin-right: .5em;
+
+      a, button { 
+        text-align: right; 
+        padding: .5em 1.5em;
+      }
+      
+    }
+
+    .dropdown-btn:hover { 
+      cursor: pointer;
     }
   }
 `;
