@@ -4,6 +4,7 @@ import Page from '../../components/Page';
 import { Container as Input } from '../../components/Input/styles';
 
 export const Container = styled(Page)`
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -27,8 +28,6 @@ export const Container = styled(Page)`
         font-size: 3em;
         color: var(--primary);
       }
-
-      
 
     }
   }
