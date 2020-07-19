@@ -1,9 +1,14 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
+import { setUserOnLocalStorage, getUserFromLocalStorage } from '../../util/localStorage';
 
 export const UserContext = createContext(null);
 
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState(null);
+
+  const storedUser = getUserFromLocalStorage();
+  const [user, setUser] = useState(storedUser);
+
+  useEffect(() => setUserOnLocalStorage(user), [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
