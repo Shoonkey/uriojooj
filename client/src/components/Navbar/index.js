@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
-import Icon from '../Icon';
 import Button from '../Button';
+import Icon from '../Icon';
+import Overlay from '../Overlay';
 import { UserContext } from '../UserProvider';
 import { Container } from './styles';
 
 function Navbar() {
 
   const { user, setUser } = useContext(UserContext);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const [dropdown, setDropdown] = useState(null);
 
   return (
     <Container>
@@ -19,19 +19,44 @@ function Navbar() {
       {
         user ? (
           <div className="profile">
-            <div className="circle"></div>
-            <Button theme="discreet" onClick={toggleDropdown}>
-              <Icon name="chevron-down-outline" />
+            { dropdown && <Overlay bgColor="transparent" onClick={() => setDropdown(null)} /> }
+            <Button 
+              theme="discreet" 
+              onClick={() => setDropdown(dropdown === "nav" ? null : "nav")}
+              aria-controls="nav-dropdown"
+              aria-expanded={dropdown === "nav"}
+              className="nav-btn"
+            >
+              <Icon name="grid" />
             </Button>
-            {
-              dropdownOpen && (
-                <div className="dropdown">
-                  <Button theme="discreet" to="/profile">Your profile</Button>
-                  <Button theme="discreet" to="/profile/settings">Settings</Button>
-                  <Button theme="discreet" onClick={() => setUser(null)}>Log out</Button>
-                </div>
-              )
-            }
+            <div id="nav-dropdown" className={clsx("dropdown", dropdown === "nav" && "visible")}>
+              <Button theme="discreet" to="/news">
+                <Icon name="newspaper-outline" />
+                News
+              </Button>
+              <Button theme="discreet" to="/contests">
+                <Icon name="game-controller-outline" />
+                Contests
+              </Button>
+              <Button theme="discreet" to="/problems">
+                <Icon name="code-slash-outline" />
+                Problems
+              </Button>
+            </div>
+            <Button 
+              theme="discreet" 
+              onClick={() => setDropdown(dropdown === "user" ? null : "user")}
+              className="user-btn"
+              aria-controls="user-dropdown"
+              aria-expanded={dropdown === "user"}
+            >
+              <div className="circle"></div>
+            </Button>
+            <div id="user-dropdown" className={clsx("dropdown", dropdown === "user" && "visible")}>
+              <Button theme="discreet" to="/profile">Your profile</Button>
+              <Button theme="discreet" to="/profile/settings">Settings</Button>
+              <Button theme="discreet" onClick={() => setUser(null)}>Log out</Button>
+            </div>
           </div>
         ) : (
           <Button to="/auth?type=login">Log in</Button>
