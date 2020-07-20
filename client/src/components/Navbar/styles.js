@@ -4,6 +4,10 @@ const navHeight = "10vh";
 
 export const Container = styled.div`
   display: flex;
+  
+  box-sizing: border-box;
+  width: 100%;
+  
   justify-content: space-between;
   align-items: center;
 
