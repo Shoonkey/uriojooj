@@ -29,7 +29,7 @@ export async function getDashboardData({ uid }){
     }
   } catch (e){
     console.error(e);
-    throw new Error("Something went wrong while getting your dashboard info :(");
+    throw new Error("Failed to get dashboard info");
   }
 
 }

@@ -73,7 +73,7 @@ export async function signup({ name, nickname, email, password }){
 
   } catch (e){
     console.error(e);
-    throw new Error("We weren't able to create your account.");
+    throw new Error("Failed to create your account.");
   }
 
 }
