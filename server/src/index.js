@@ -6,8 +6,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
-import setupGeneralRoutes from './routes/general';
-import setupAuthRoutes from './routes/auth';
+import setupRoutes from './routes';
 
 
 const app = express();
@@ -20,7 +19,6 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({ origin: "http://localhost:3000" }));
 
-setupGeneralRoutes(express, app);
-setupAuthRoutes(express, app);
+setupRoutes(express, app);
 
 app.listen(port, () => console.log(`Server is up on port ${port}!`));
