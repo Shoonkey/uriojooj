@@ -1,17 +1,28 @@
 import React from 'react';
 
-import { generateHeaders, generateRows } from './util';
+import Header from './Header';
+import Row from './Row';
 import { TableContainer } from './styles';
 
 function Table({ headers, data, ...props }) {
-  
   return (
     <TableContainer {...props}>
       <thead>
-        <tr>{generateHeaders(headers)}</tr>
+        <tr>
+          {
+            headers.map((header, idx) => (
+              <Header
+                key={"header-" + idx}
+                name={header.name}
+                sortable={header.sortable}
+                keyCorrespondent={header.key}
+              />
+            ))
+          }
+        </tr>
       </thead>
       <tbody>
-        {generateRows(headers, data)}
+        {data.map(obj => <Row key={obj.id} headers={headers} info={obj} />)}
       </tbody>
     </TableContainer>
   );

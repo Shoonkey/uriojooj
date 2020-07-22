@@ -1,33 +1,27 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Button from '../Button';
 import Icon from '../Icon';
+import { getNextSortOption } from './util';
 import { HeaderContainer } from './styles';
-
-const SORT_OPTIONS = [null, "DESC", "ASC"];
-
-function getNextSortOption(currentOption){
-
-  const idx = SORT_OPTIONS.indexOf(currentOption);
-  const len = SORT_OPTIONS.length;
-
-  return SORT_OPTIONS[(idx + 1) % len];
-}
 
 function Header({ name, keyCorrespondent, sortable }) {
 
   const [sortingBy, setSortingBy] = useState(null);
+  const headerName = keyCorrespondent || name.toLowerCase().replace(/\s+/g, '_');
 
-  const className = keyCorrespondent || name.toLowerCase().replace(/\s+/g, '_');
+  const updateSortState = () => {
+    const nextOption = getNextSortOption(sortingBy);
+    setSortingBy(nextOption);
+  }
 
   return (
-    <HeaderContainer sortingBy={sortingBy} className={className}>
+    <HeaderContainer sortingBy={sortingBy} className={headerName}>
       {
         sortable ? (
           <Button 
             theme="discreet" 
-            onClick={() => setSortingBy(getNextSortOption(sortingBy))}
+            onClick={updateSortState}
           >
             <p>{name}</p>
             <Icon name="arrow-down-outline" />
