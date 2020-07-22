@@ -21,7 +21,7 @@ function Dashboard() {
       .then(setData)
       .catch(console.error);
 
-  }, []);
+  }, [user]);
 
   return (
     <Container authOnly>

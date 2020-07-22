@@ -26,7 +26,7 @@ function CircularProgress({ color, size, animation, strokeWidth, progress }) {
         textContainer.innerText = percentage.toFixed(2) + "%";
       }
     });
-  }, []);
+  });
 
   return <Container id={id} style={{ width: size, height: size }} />;
 }
