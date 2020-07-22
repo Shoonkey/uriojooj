@@ -13,3 +13,7 @@ export async function login({ nicknameOrEmail, password }){
 export async function getDashboardData(uid){
   return api.get("/dashboard", { params: { uid } });
 }
+
+export async function getProblems(page = 1){
+  return api.get("/problem/all", { params: { page } });
+}
