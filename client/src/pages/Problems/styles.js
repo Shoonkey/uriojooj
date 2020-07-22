@@ -5,7 +5,9 @@ import Page from '../../components/Page';
 export const Container = styled(Page)`
   flex-direction: column;
 
-  main { 
+  main {
+    display: flex;
+    flex-direction: column; 
     background: #222222; 
     flex-grow: 1;
     margin: 2em 1em;

@@ -10,14 +10,15 @@ function ProblemExplorer() {
 
   const [problems, setProblems] = useState(null);
 
-  useEffect(() => {
-
-    getProblems()
+  // Allowed keys for the object argument are `page` and `sort`
+  const retrieveProblems = obj => {
+    getProblems(obj || {})
       .then(res => res.data)
       .then(setProblems)
       .catch(console.error);
+  }
 
-  }, []);
+  useEffect(retrieveProblems, []);
 
   let content;
 
